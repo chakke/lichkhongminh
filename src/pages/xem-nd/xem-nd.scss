@@ -1,0 +1,26 @@
+page-xem-nd {
+   
+    ion-content {
+        background: linear-gradient(to bottom, #14e09c, #274c7c);
+    }
+   
+    .item-container {
+        background: rgba(black, 0.2);
+        border-radius: 5px;
+        min-height: 13em;
+    }
+    .logo {
+        padding-top: 10px;
+        img {
+            height: 8em;
+            width: 6em;
+        }
+    }
+    .name {
+        text-align: center;
+        padding: 10px 10px 5px 10px;
+        span {
+            color: white;
+        }
+    }
+}
