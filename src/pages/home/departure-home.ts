@@ -91,6 +91,9 @@ export class DepartureHomePage {
     this.changeBackGroundStatusBar();
     if (!this.mHasEnter) {
       this.mHasEnter = true;
+      setTimeout(() => {
+        this.precacheBackgrounds();
+      }, 2000);
       this.mMenuController.enable(false, "lottery");
       this.addCubeListener();
     }
@@ -353,5 +356,17 @@ export class DepartureHomePage {
     modal.present({
       animate: false
     })
+  }
+
+  precacheBackgrounds() {
+    let fakeImages = document.getElementById("fakeimages");
+    if (fakeImages) {
+      let backgrounds = this.mAppModule.getAppConfig().get("backgrounds");
+      for (let background of backgrounds) {
+        let img: HTMLImageElement = <HTMLImageElement>document.createElement("img");
+        img.src = background.image;
+        fakeImages.appendChild(img);
+      }
+    }
   }
 }

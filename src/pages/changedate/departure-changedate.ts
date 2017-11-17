@@ -59,9 +59,18 @@ export class DepartureChangeDatePage {
     this.mAppModule.showAdvertisement();
   }
   ionViewDidLeave() {
-    this.mNavController.swipeBackEnabled = true;
+    //  this.mNavController.swipeBackEnabled = true;
+  }
+
+  getNumberOfScrollingByTouch() {
+    let numberScroll = 0;
+    for (let scroll of this.mScrollItems) {
+      if (scroll.isScrollingByTouch()) numberScroll++;
+    }
+    return numberScroll;
   }
   mEventsCreated: boolean = false;
+
   createEventListeners() {
     if (this.mEventsCreated) return;
     this.mEventsCreated = true;
@@ -70,6 +79,10 @@ export class DepartureChangeDatePage {
       scrollItems.createListener();
       this.mScrollItems.push(scrollItems);
       scrollItems.setScrollEndListener((scrollTop) => {
+        if (this.getNumberOfScrollingByTouch() != 1) {
+          this.mCenterIndexs[i] = scrollItems.getCurrentFocusElement(true);
+          return;
+        }
         if (i <= 2) {
           let dd = this.mDayDatas[this.mCenterIndexs[0]];
           let mm = this.mMonthDatas[this.mCenterIndexs[1]];
@@ -109,10 +122,6 @@ export class DepartureChangeDatePage {
     this.setSolarDay(this.mToday.getDate(), this.mToday.getMonth() + 1, this.mToday.getFullYear());
   }
 
-
-
-
-
   /*Trả về index của date trong datas*/
   getDateIndex(date: number): number {
     for (let i = 0; i < this.mDayDatas.length; i++) {
@@ -138,13 +147,34 @@ export class DepartureChangeDatePage {
     this.mMaxSolarDay = DepartureUtils.getDaysInMonth(this.mToday.getMonth(), this.mToday.getFullYear());
 
     let lunar = DepartureUtils.convertSolar2Lunar(this.mToday.getDate(), this.mToday.getMonth() + 1, this.mToday.getFullYear(), 7);
-    this.mScrollItems[0].mElement.scrollTop = this.mScrollItems[0].getScrollOfItemIndex(this.getDateIndex(this.mToday.getDate()));
-    this.mScrollItems[1].mElement.scrollTop = this.mScrollItems[0].getScrollOfItemIndex(this.getMonthIndex(this.mToday.getMonth() + 1));
-    this.mScrollItems[2].mElement.scrollTop = this.mScrollItems[0].getScrollOfItemIndex(this.getYearIndex(this.mToday.getFullYear()));
 
-    this.mScrollItems[3].mElement.scrollTop = this.mScrollItems[3].getScrollOfItemIndex(this.getDateIndex(lunar[0]));
-    this.mScrollItems[4].mElement.scrollTop = this.mScrollItems[4].getScrollOfItemIndex(this.getMonthIndex(lunar[1]));
-    this.mScrollItems[5].mElement.scrollTop = this.mScrollItems[5].getScrollOfItemIndex(this.getYearIndex(lunar[2]));
+
+
+    // this.mScrollItems[0].mElement.scrollTop = this.mScrollItems[0].getScrollOfItemIndex(this.getDateIndex(this.mToday.getDate()));
+    // this.mScrollItems[1].mElement.scrollTop = this.mScrollItems[0].getScrollOfItemIndex(this.getMonthIndex(this.mToday.getMonth() + 1));
+    // this.mScrollItems[2].mElement.scrollTop = this.mScrollItems[0].getScrollOfItemIndex(this.getYearIndex(this.mToday.getFullYear()));
+
+    // this.mScrollItems[3].mElement.scrollTop = this.mScrollItems[3].getScrollOfItemIndex(this.getDateIndex(lunar[0]));
+    // this.mScrollItems[4].mElement.scrollTop = this.mScrollItems[4].getScrollOfItemIndex(this.getMonthIndex(lunar[1]));
+    // this.mScrollItems[5].mElement.scrollTop = this.mScrollItems[5].getScrollOfItemIndex(this.getYearIndex(lunar[2]));
+
+
+
+    this.mCenterIndexs[0] = this.getDateIndex(this.mToday.getDate());
+    this.mCenterIndexs[1] = this.getMonthIndex(this.mToday.getMonth() + 1);
+    this.mCenterIndexs[2] = this.getYearIndex(this.mToday.getFullYear());
+    this.mCenterIndexs[3] = this.getDateIndex(lunar[0]);
+    this.mCenterIndexs[4] = this.getMonthIndex(lunar[1]);
+    this.mCenterIndexs[5] = this.getYearIndex(lunar[2]);
+
+    this.mScrollItems[0].mElement.scrollTop = this.mScrollItems[0].getScrollOfItemIndex(this.mCenterIndexs[0]);
+    this.mScrollItems[1].mElement.scrollTop = this.mScrollItems[0].getScrollOfItemIndex(this.mCenterIndexs[1]);
+    this.mScrollItems[2].mElement.scrollTop = this.mScrollItems[0].getScrollOfItemIndex(this.mCenterIndexs[2]);
+
+    this.mScrollItems[3].mElement.scrollTop = this.mScrollItems[3].getScrollOfItemIndex(this.mCenterIndexs[3]);
+    this.mScrollItems[4].mElement.scrollTop = this.mScrollItems[4].getScrollOfItemIndex(this.mCenterIndexs[4]);
+    this.mScrollItems[5].mElement.scrollTop = this.mScrollItems[5].getScrollOfItemIndex(this.mCenterIndexs[5]);
+
 
     this.mDepartureObject.setDate(this.mToday.getDate(), this.mToday.getMonth(), this.mToday.getFullYear());
     this.mAppModule.updateDepartureInfo([this.mDepartureObject]);
@@ -158,17 +188,25 @@ export class DepartureChangeDatePage {
     let lunar = DepartureUtils.convertSolar2Lunar(dd, mm, yy, 7);
 
     let scrollOptions: ScrollOption = {
-      alpha: 0.1,
+      alpha: 0.2,
       epsilon: 1,
       callback: () => { }
     };
-    AppModule.getInstance().getScrollController().doScroll(this.divID[0], this.mScrollItems[0].getScrollOfItemIndex(this.getDateIndex(dd)), scrollOptions);
-    AppModule.getInstance().getScrollController().doScroll(this.divID[1], this.mScrollItems[1].getScrollOfItemIndex(this.getMonthIndex(mm)), scrollOptions);
-    AppModule.getInstance().getScrollController().doScroll(this.divID[2], this.mScrollItems[2].getScrollOfItemIndex(this.getYearIndex(yy)), scrollOptions);
 
-    AppModule.getInstance().getScrollController().doScroll(this.divID[3], this.mScrollItems[3].getScrollOfItemIndex(this.getDateIndex(lunar[0])), scrollOptions);
-    AppModule.getInstance().getScrollController().doScroll(this.divID[4], this.mScrollItems[4].getScrollOfItemIndex(this.getMonthIndex(lunar[1])), scrollOptions);
-    AppModule.getInstance().getScrollController().doScroll(this.divID[5], this.mScrollItems[5].getScrollOfItemIndex(this.getYearIndex(lunar[2])), scrollOptions);
+    this.mCenterIndexs[0] = this.getDateIndex(dd);
+    this.mCenterIndexs[1] = this.getMonthIndex(mm);
+    this.mCenterIndexs[2] = this.getYearIndex(yy);
+    this.mCenterIndexs[3] = this.getDateIndex(lunar[0]);
+    this.mCenterIndexs[4] = this.getMonthIndex(lunar[1]);
+    this.mCenterIndexs[5] = this.getYearIndex(lunar[2]);
+
+    AppModule.getInstance().getScrollController().doScroll(this.divID[0], this.mScrollItems[0].getScrollOfItemIndex(this.mCenterIndexs[0]), scrollOptions);
+    AppModule.getInstance().getScrollController().doScroll(this.divID[1], this.mScrollItems[1].getScrollOfItemIndex(this.mCenterIndexs[1]), scrollOptions);
+    AppModule.getInstance().getScrollController().doScroll(this.divID[2], this.mScrollItems[2].getScrollOfItemIndex(this.mCenterIndexs[2]), scrollOptions);
+
+    AppModule.getInstance().getScrollController().doScroll(this.divID[3], this.mScrollItems[3].getScrollOfItemIndex(this.mCenterIndexs[3]), scrollOptions);
+    AppModule.getInstance().getScrollController().doScroll(this.divID[4], this.mScrollItems[4].getScrollOfItemIndex(this.mCenterIndexs[4]), scrollOptions);
+    AppModule.getInstance().getScrollController().doScroll(this.divID[5], this.mScrollItems[5].getScrollOfItemIndex(this.mCenterIndexs[5]), scrollOptions);
 
     this.mDepartureObject.setDate(dd, mm - 1, yy);
     this.mAppModule.updateDepartureInfo([this.mDepartureObject]);
@@ -178,18 +216,26 @@ export class DepartureChangeDatePage {
     let solar = DepartureUtils.convertLunar2Solar(dd, mm, yy, 0);
 
     let scrollOptions: ScrollOption = {
-      alpha: 0.1,
+      alpha: 0.2,
       epsilon: 1,
       callback: () => { }
     };
 
-    AppModule.getInstance().getScrollController().doScroll(this.divID[0], this.mScrollItems[0].getScrollOfItemIndex(this.getDateIndex(solar[0])), scrollOptions);
-    AppModule.getInstance().getScrollController().doScroll(this.divID[1], this.mScrollItems[1].getScrollOfItemIndex(this.getMonthIndex(solar[1])), scrollOptions);
-    AppModule.getInstance().getScrollController().doScroll(this.divID[2], this.mScrollItems[2].getScrollOfItemIndex(this.getYearIndex(solar[2])), scrollOptions);
+    this.mCenterIndexs[0] = this.getDateIndex(solar[0]);
+    this.mCenterIndexs[1] = this.getMonthIndex(solar[1]);
+    this.mCenterIndexs[2] = this.getYearIndex(solar[2]);
+    this.mCenterIndexs[3] = this.getDateIndex(dd);
+    this.mCenterIndexs[4] = this.getMonthIndex(mm);
+    this.mCenterIndexs[5] = this.getYearIndex(yy);
 
-    AppModule.getInstance().getScrollController().doScroll(this.divID[3], this.mScrollItems[3].getScrollOfItemIndex(this.getDateIndex(dd)), scrollOptions);
-    AppModule.getInstance().getScrollController().doScroll(this.divID[4], this.mScrollItems[4].getScrollOfItemIndex(this.getMonthIndex(mm)), scrollOptions);
-    AppModule.getInstance().getScrollController().doScroll(this.divID[5], this.mScrollItems[5].getScrollOfItemIndex(this.getYearIndex(yy)), scrollOptions);
+    AppModule.getInstance().getScrollController().doScroll(this.divID[0], this.mScrollItems[0].getScrollOfItemIndex(this.mCenterIndexs[0]), scrollOptions);
+    AppModule.getInstance().getScrollController().doScroll(this.divID[1], this.mScrollItems[1].getScrollOfItemIndex(this.mCenterIndexs[1]), scrollOptions);
+    AppModule.getInstance().getScrollController().doScroll(this.divID[2], this.mScrollItems[2].getScrollOfItemIndex(this.mCenterIndexs[2]), scrollOptions);
+
+    AppModule.getInstance().getScrollController().doScroll(this.divID[3], this.mScrollItems[3].getScrollOfItemIndex(this.mCenterIndexs[3]), scrollOptions);
+    AppModule.getInstance().getScrollController().doScroll(this.divID[4], this.mScrollItems[4].getScrollOfItemIndex(this.mCenterIndexs[4]), scrollOptions);
+    AppModule.getInstance().getScrollController().doScroll(this.divID[5], this.mScrollItems[5].getScrollOfItemIndex(this.mCenterIndexs[5]), scrollOptions);
+
 
     this.mDepartureObject.setDate(solar[0], solar[1] - 1, solar[2]);
     this.mAppModule.updateDepartureInfo([this.mDepartureObject]);

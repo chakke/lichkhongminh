@@ -6,6 +6,7 @@ page-departure-changedate {
     background-repeat: no-repeat;
     .scroll-content {
       // background-color: rgba(17, 34, 51, 0.5);
+      overflow-y: hidden;
     }
   }
   $heiderHeight: 60px;

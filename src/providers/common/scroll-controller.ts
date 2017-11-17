@@ -14,6 +14,7 @@ export class ScrollItems {
     mCenterChangeListener: any = null;
     mItemHeight: number = 40;
     mFocusIndex: number = 0;
+    mNumberItems: number = 0;
     constructor(id: string) {
         this.mElement = document.getElementById(id);
         if (this.mElement && this.mElement.childElementCount > 0) {
@@ -22,6 +23,7 @@ export class ScrollItems {
                 this.mItemHeight = node.clientHeight;
             }
         }
+        this.mNumberItems = this.mElement.childElementCount - 3;
     }
     setScrollEndListener(listener) {
         this.mScrollEndListener = listener;
@@ -30,6 +32,9 @@ export class ScrollItems {
         this.mCenterChangeListener = listener;
     }
 
+    isScrollingByTouch(){
+        return this.mScrolling && this.mTouchStart;
+    }
 
     createListener() {
         AppLoop.getInstance().scheduleUpdate(this);
@@ -52,12 +57,16 @@ export class ScrollItems {
         this.mElement.addEventListener("scroll", (event) => {
             this.mScrolling = true;
             this.mIdleTime = 0;
-            this.onScroll();
+            if (this.mTouchStart && !this.mTouchEnd) {
+                this.onScroll();
+            }
         });
 
     }
     onScrollStopped() {
-        if (this.mScrollEndListener) this.mScrollEndListener(this.mElement.scrollTop);
+        if (this.mScrollEndListener) {
+            this.mScrollEndListener(this.mElement.scrollTop);
+        }
         this.mTouchEnd = false;
         this.mTouchStart = false;
         this.mScrolling = false;
@@ -66,7 +75,8 @@ export class ScrollItems {
     onUpdate() {
         if (this.mScrolling && this.mTouchEnd) {
             this.mIdleTime++;
-            if (this.mIdleTime > 10) {
+            if (this.mIdleTime > 6) {
+                this.onScroll();
                 this.onScrollStopped();
             }
         }
@@ -76,17 +86,27 @@ export class ScrollItems {
         return this.mItemHeight * itemIndex;
     }
 
-    getCurrentFocusElement() {
+    getCurrentFocusElement(recalculate: boolean = false) {
+        if (recalculate) {
+            this.mFocusIndex = this.getElementInFocus(this.mElement.scrollTop);
+        }
         return this.mFocusIndex;
     }
 
     getElementInFocus(scrollTop: number) {
-        return Math.floor((scrollTop + this.mItemHeight / 2) / this.mItemHeight);
+        let focusIndex = Math.floor((scrollTop + this.mItemHeight / 2) / this.mItemHeight);
+
+        if (focusIndex < 0) focusIndex = 0;
+        else if (focusIndex > this.mNumberItems) focusIndex = this.mNumberItems;
+
+        return focusIndex;
     }
 
     onScroll() {
         if (!this.mElement) return;
         let focusIndex = this.getElementInFocus(this.mElement.scrollTop);
+        // console.log(focusIndex);
+
         if (this.mFocusIndex != focusIndex) {
             this.mFocusIndex = focusIndex;
             if (this.mCenterChangeListener) this.mCenterChangeListener(this.mFocusIndex);
@@ -153,7 +173,7 @@ export class ScrollDiv {
                 this.element.scrollTop = this.top;
                 this.done = true;
             } else {
-                this.element.scrollTop += dScroll;  
+                this.element.scrollTop += dScroll;
             }
         }
         else if (this.direction == 4) {

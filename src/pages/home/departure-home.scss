@@ -105,16 +105,14 @@ page-departure-home {
   .height-56 {
     height: 56px;
   } //  ======================
-
   #homepage-content {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    position: relative; 
   }
   .background-animation {
-    -webkit-transition: background-image .4s ease-in-out;
-    transition: background-image .4s ease-in-out;
+    -webkit-transition: background-image .4s;
+    transition: background-image .4s;
   }
   #cube {
     width: 100%;
