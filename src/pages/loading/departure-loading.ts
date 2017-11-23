@@ -31,7 +31,7 @@ export class DepartureLoadingPage {
   ionViewDidEnter() {
 
     AppController.getInstance().setPlatform(this.mPlatform);
-    this.mAppModule.mIsOnIOSDevice = AppController.getInstance().isIOS();
+    //this.mAppModule.mIsOnIOSDevice = AppController.getInstance().isIOS();
     this.mAppModule.mAdsManager.setAdmobFree(this.mAdmobfree);
     this.mAppModule.mAnalyticsManager.setGoogleAnalytics(this.mGoogleAnalytics);
 

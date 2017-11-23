@@ -14,6 +14,7 @@ import { XEMND } from './departure-XEMND';
 import { DepartureUtils } from "./departure-utils";
 import { Utils } from "../app-utils";
 import { BackgroundController } from "./controller/background-controller";
+
 @Injectable()
 export class DepartureModule {
   public mBackgroundController: BackgroundController;
@@ -31,10 +32,8 @@ export class DepartureModule {
   private cavalVNAL: any;
   private cavalVNDL: any;
   private vankhan_data: any;
-  private dem: number = 0;
-  private n1: number = 0;
-  private n2: number = 1;
-  private period_number: number = 2;
+
+
 
   private mConfig: AppConfig;
   public mIsOnIOSDevice: boolean = true;
@@ -77,7 +76,7 @@ export class DepartureModule {
       if (this.mConfig.hasData()) {
         resolve();
       } else {
-        this.mHttpService.getHttp().request("assets/config/departure.json").subscribe(
+        this.mHttpService.getHttp().request("assets/config/lichkhongminh.json").subscribe(
           data => {
             this.mConfig.onResponseConfig(data.json());
             this.mBackgroundController.onData(this.mConfig.get("backgrounds"));
@@ -426,27 +425,20 @@ export class DepartureModule {
       return this.cavalVNDL;
     }
   }
-  showInterstitial() {
-    this.mAdsManager.showInterstital(true);
-  }
+
+  private _index: number = 0;
+  private _counts: Array<number> = [5, 7, 10, 12];
+  private _count: number = 0;
   showAdvertisement() {
-    this.dem++;
-    this.checkFibonaci(this.dem);
-  }
-  // day fibonaci: 0,1,1,2,3,5,8,13,21,34,55,89,....
-  checkFibonaci(number) {
-    if (number == (this.n1 + this.n2)) {
-      this.n1 = this.n2;
-      this.n2 = number;
-      if (number > this.period_number) {
-        this.showInterstitial();
-        this.period_number = number;
-        this.dem = 0;
+    this._count++;
+    if (this._count > this._counts[this._index]) {
+      this.mAdsManager.showInterstital(true);
+      if (this._index < this._counts.length - 1) {
+        this._index++;
       }
+      this._count = 0;
     }
   }
-
-
 
   // To track a Screen 
   trackView() {

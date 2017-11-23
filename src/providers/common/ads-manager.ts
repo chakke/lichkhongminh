@@ -38,12 +38,38 @@ export class AdsManager {
     public showInterstital(force: boolean = true) {
         if (!this.mAdsEnable) return;
         if (force) {
-            this.mAdmobFree.interstitial.show();
+            if (this.mAdmobFree.interstitial.isReady()) {
+                this.mAdmobFree.interstitial.show();
+                this.mAdmobFree.interstitial.prepare();
+            } else {
+                this.mAdmobFree.interstitial.prepare().then(
+                    (data) => {
+                        this.mAdmobFree.interstitial.show();
+                    },
+                    error => {
+
+                    }
+                );
+            }
             return;
         }
         this.mTimeCheck++;
         if (this.mTimeCheck >= 10) {
-            if (this.mAdmobFree) this.mAdmobFree.interstitial.show();
+            if (this.mAdmobFree) {
+                if (this.mAdmobFree.interstitial.isReady()) {
+                    this.mAdmobFree.interstitial.show();
+                    this.mAdmobFree.interstitial.prepare();
+                } else {
+                    this.mAdmobFree.interstitial.prepare().then(
+                        (data) => {
+                            this.mAdmobFree.interstitial.show();
+                        },
+                        error => {
+
+                        }
+                    );
+                }
+            }
             this.mTimeCheck = 0;
         }
     }

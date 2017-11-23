@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, MenuController, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, MenuController, ModalController, Platform } from 'ionic-angular';
 import { AppController } from '../../providers/app-controller';
 import { DepartureModule } from '../../providers/departure/departure';
 import { DepartureObject } from "../../providers/departure/class/departure-object";
@@ -68,6 +68,7 @@ export class DepartureHomePage {
 
   mBackgroundAnimationEnable: boolean = true;
   constructor(
+    private mPlatform: Platform,
     private navCtrl: NavController,
     private mAppModule: DepartureModule,
     private mMenuController: MenuController,
@@ -359,6 +360,7 @@ export class DepartureHomePage {
   }
 
   precacheBackgrounds() {
+    if (!this.mPlatform.is("ios")) return;
     let fakeImages = document.getElementById("fakeimages");
     if (fakeImages) {
       let backgrounds = this.mAppModule.getAppConfig().get("backgrounds");
