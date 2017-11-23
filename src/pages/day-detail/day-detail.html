@@ -3,7 +3,7 @@
     <div class="padding-statusbar"></div>
     <div class="a3-container a3-justify-between a3-items-center height-56 ">
 
-      <div class="header-button a-back-button" tappable (click)="close()">
+      <div class="header-button a-back-button touch-scale" tappable (click)="close()">
 
         <ion-icon name="ios-arrow-dropleft-outline"></ion-icon>
 
@@ -18,10 +18,8 @@
         </div>
       </div>
 
-      <div class="header-button" tappable (click)="goToDay()">
-        <div class="today-button">
-          Hôm nay
-        </div>
+      <div class="header-button touch-scale"  tappable  (click)="goToDay()" >
+        <ion-icon name="departure-c-today"></ion-icon>
       </div>
     </div>
   </div>

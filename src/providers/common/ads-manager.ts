@@ -1,4 +1,5 @@
 import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeInterstitialConfig } from '@ionic-native/admob-free';
+import { Platform } from 'ionic-angular';
 
 export class AdsManager {
 
@@ -15,27 +16,37 @@ export class AdsManager {
         }
     }
 
-    public load(data: any) {
+    public load(mPlatform: Platform, data: any) {
+        if (!this.mAdmobFree) return;
         if ('enable' in data) {
             this.mAdsEnable = data.enable;
+        } else {
+            if (mPlatform.is("android") || mPlatform.is('ios')) {
+                this.mAdsEnable = true;
+            } else {
+                this.mAdsEnable = false;
+            }
         }
 
         if (this.mAdsEnable) {
-            let adsConfig = data[data.platform];
+            let platform: string = "";
+            if (mPlatform.is('android')) platform = 'android';
+            else if (mPlatform.is('ios')) platform = 'ios';
 
-            this.mAdmobFree.banner.config(adsConfig.banner);
-            if (adsConfig.banner.autoShow) {
-                this.mAdmobFree.banner.prepare();
+            if (platform.length > 0 && (platform in data)) {
+                let adsConfig = data[platform];
+                this.mAdmobFree.banner.config(adsConfig.banner);
+                if (adsConfig.banner.autoShow) {
+                    this.mAdmobFree.banner.prepare();
+                }
+                this.mAdmobFree.interstitial.config(adsConfig.interstitial);
+                this.mAdmobFree.interstitial.prepare();
             }
-
-            this.mAdmobFree.interstitial.config(adsConfig.interstitial);
-
-
-            this.mAdmobFree.interstitial.prepare();
         }
     }
 
     public showInterstital(force: boolean = true) {
+        if (!this.mAdmobFree) return;
         if (!this.mAdsEnable) return;
         if (force) {
             if (this.mAdmobFree.interstitial.isReady()) {

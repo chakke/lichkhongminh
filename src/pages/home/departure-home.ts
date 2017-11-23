@@ -13,6 +13,7 @@ import { DepartureUtils } from "../../providers/departure/departure-utils";
   templateUrl: 'departure-home.html',
 })
 export class DepartureHomePage {
+  mToday: Date = new Date();
   mBackground: Background = new Background();
   //thời gian hiện tại
   nowtime: any;
@@ -77,9 +78,9 @@ export class DepartureHomePage {
 
   ) {
 
-    this.solarDate = new Date().getDate();
-    this.solarMonth = new Date().getMonth() + 1;
-    this.solarYear = new Date().getFullYear();
+    this.solarDate = this.mToday.getDate();
+    this.solarMonth = this.mToday.getMonth() + 1;
+    this.solarYear = this.mToday.getFullYear();
     this.degree = 0;
   }
 
@@ -177,6 +178,21 @@ export class DepartureHomePage {
     this.sexagesimalCycleTime = this.mAppModule.getSexagesimalCycleByTime(this.solarDate, this.solarMonth, this.solarYear, this.nowtime.getHours());
     this.isLoading = false;
   }
+  onClickToDay() {
+    this.solarDate = this.mToday.getDate();
+    this.solarMonth = this.mToday.getMonth() + 1;
+    this.solarYear = this.mToday.getFullYear();
+
+    this.getDayOfWeek();
+    this.getLunarDateTime();
+    this.getSexagesimalCycle();
+    this.getQuoteAndDayName();
+    this.changeBackgroundImage();
+    this.nowtime = new Date();
+    this.sexagesimalCycleTime = this.mAppModule.getSexagesimalCycleByTime(this.solarDate, this.solarMonth, this.solarYear, this.nowtime.getHours());
+    this.isLoading = false;
+  }
+
   onClickHome() {
     //this.events.publish("HOME_PAGE");
     if (AppController.getInstance().getNavController()) {

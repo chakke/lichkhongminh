@@ -12,9 +12,7 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
-
 @import "../theme/departure-icons";
-
 .ion-diagnostics-toast-message {
   padding: 0px !important;
 }
@@ -597,7 +595,25 @@ $line-height: 20px;
 // ===============================End Flex CSS=========================================
 // ================ Departure APP ==============
 .padding-statusbar {
-  //height: $statusbar-height;
+  height: $statusbar-height;
+}
+
+.touch-scale {
+  transform: scale(1);
+  transition: 200ms;
+}
+
+.touch-scale:active {
+  transform: scale(.9);
+}
+
+.touch-opacity {
+  opacity: 1;
+  transition: 200ms;
+}
+
+.touch-opacity:active {
+  opacity: .8;
 }
 
 .header-button {
@@ -609,6 +625,7 @@ $line-height: 20px;
 }
 
 .header-title {
+  padding: 10px 0px;
   text-align: center;
   color: white;
   font-size: 1.2em;

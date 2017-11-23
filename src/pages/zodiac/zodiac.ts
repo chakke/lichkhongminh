@@ -16,45 +16,58 @@ import { StatusBar } from '@ionic-native/status-bar';
   templateUrl: 'zodiac.html',
 })
 export class ZodiacPage {
+  mPageTitle: string = "";
   data: any;
   isLoading: boolean = true;
+  mIcons: Array<string> = [];
   constructor(
     private mAppModule: DepartureModule,
-    private statusBar : StatusBar,
+    private statusBar: StatusBar,
     public navCtrl: NavController, public navParams: NavParams) {
-  }
-  ionViewDidEnter() {
     if (!this.mAppModule.mIsOnIOSDevice) this.statusBar.backgroundColorByHexString("#274c7c");
     this.loadData();
   }
+  ionViewDidEnter() {
 
-  loadData(){
-    if(this.data)return;
+  }
+
+  loadData() {
+    if (this.data) return;
+    this.mAppModule.loadConfig().then(
+      () => {
+        let zodiacPageData = this.mAppModule.getAppConfig().get("ZodiacPage");
+        if (zodiacPageData) {
+          this.mIcons = zodiacPageData.zodiac_icons;
+          this.mPageTitle = zodiacPageData.page_title;
+        }
+      }
+    );
     this.mAppModule.getZodiacDataJSON().then(
-      data=>{
+      data => {
         this.data = data;
         this.isLoading = false;
-      },error =>{}
+      }, error => { }
     )
   }
 
-  viewDetail(id:string){
+  viewDetail(id: string) {
     let index = parseInt(id);
-    this.navCtrl.push("ZodiacDetailPage",{
-      data: this.data[index-1]
+    this.navCtrl.push("ZodiacDetailPage", {
+      data: this.data[index - 1]
     })
   }
 
-  getDataImage(id: string): string{
+  getDataImage(id: string): string {
     let index = parseInt(id);
+    if (this.mIcons.length > 0) return this.mIcons[index - 1];
     return this.mAppModule.getZodiacImage(index);
   }
 
-  getItemName(name: string): string{
+  getItemName(name: string): string {
     return name.split("(")[1].split(")")[0];
   }
 
-  closeView(){
+  closeView() {
     this.navCtrl.pop();
   }
 

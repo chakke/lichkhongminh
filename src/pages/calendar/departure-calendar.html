@@ -1,7 +1,7 @@
 <ion-header class="a-header-background">
   <div class="padding-statusbar"></div>
   <div class="a3-container a3-items-center a1-relative">
-    <div class="header-button"  tappable  (click)="pickSolarDate()">
+    <div class="header-button touch-scale"  tappable  (click)="pickSolarDate()">
       <ion-icon name="departure-c-calendar"></ion-icon>
     </div>
 
@@ -12,8 +12,8 @@
       <ion-icon margin-left name="ios-arrow-forward"></ion-icon>
 
     </div>
-    <div class="header-button" >
-      <ion-icon name="departure-c-notification"></ion-icon>
+    <div class="header-button touch-scale"  tappable  (click)="onClickToDay()" >
+      <ion-icon name="departure-c-today"></ion-icon>
     </div>
   </div>
   <ion-row class="calendar-th">
@@ -93,7 +93,7 @@
       </div>
     </div>
     <div class="zodiac-comment">
-      <span class="day-name" nowrap>Ngày {{selectedDate.nameOfDay}} </span>
+      <span class="day-name" nowrap>Ngày {{selectedDate.nameOfDay}} ({{selectedDate.dateString}}) </span>
       <span class="day-comment" *ngIf="selectedDate.comment">" {{selectedDate.comment}} "</span>
     </div>
   </div>

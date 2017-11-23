@@ -32,9 +32,10 @@ export class DepartureLoadingPage {
 
     AppController.getInstance().setPlatform(this.mPlatform);
     //this.mAppModule.mIsOnIOSDevice = AppController.getInstance().isIOS();
-    this.mAppModule.mAdsManager.setAdmobFree(this.mAdmobfree);
-    this.mAppModule.mAnalyticsManager.setGoogleAnalytics(this.mGoogleAnalytics);
-
+    if (this.mPlatform.is('android') || this.mPlatform.is('ios')) {
+      this.mAppModule.mAdsManager.setAdmobFree(this.mAdmobfree);
+      this.mAppModule.mAnalyticsManager.setGoogleAnalytics(this.mGoogleAnalytics);
+    }
 
     this.mAppModule.loadConfig().then(
       () => {
@@ -47,7 +48,7 @@ export class DepartureLoadingPage {
   onLoadedConfig() {
     let admobData = this.mAppModule.getAppConfig().get("admob");
     let assets = this.mAppModule.getAppConfig().get("resources");
-    this.mAppModule.getAdsManager().load(admobData);
+    this.mAppModule.getAdsManager().load(this.mPlatform, admobData);
     AppModule.getInstance().getResourceLoader().load(assets).then(
       () => {
         this.onLoaded();

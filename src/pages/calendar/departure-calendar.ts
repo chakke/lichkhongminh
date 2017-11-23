@@ -15,6 +15,7 @@ export class DepartureCalendarPage {
   @ViewChild('calendarContent') calendar_content: ElementRef;
   @ViewChild('box') box: ElementRef;
   @ViewChild(Slides) slides: Slides;
+  mToday : Date  = new Date();
   public departureDays: Array<DepartureObject> = [];
   public dayOfWeek = ["CN", "T2", "T3", "T4", "T5", "T6", "T7"];
   calendar1 : Calendar;
@@ -205,7 +206,15 @@ export class DepartureCalendarPage {
   changeMonth(month, event) {
     this.onInputChange(month - 1, this.calendar.year);
   }
+  onClickToDay(){
 
+    this.selectedDate = this.currentDate;
+    let month = this.selectedDate.date.getMonth();
+    let year = this.selectedDate.date.getFullYear();
+    this.onInputChange(month, year);
+    this.getCalendar1();
+    this.getCalendar2();
+  }
   onClickHome() {
     //this.events.publish("HOME_PAGE");
     if (AppController.getInstance().getNavController()) {

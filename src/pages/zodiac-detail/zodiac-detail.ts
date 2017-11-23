@@ -27,15 +27,16 @@ export class ZodiacDetailPage {
     private mAppModule: DepartureModule,
     private statusBar: StatusBar,
     public navCtrl: NavController, public navParams: NavParams) {
+    this.loadParams();
+    this.isLoading = false;
   }
 
   ionViewDidEnter() {
     if (!this.mAppModule.mIsOnIOSDevice) this.statusBar.backgroundColorByHexString("#274c7c");
-    this.loadParams();
-    this.isLoading = false;
+
     let element = document.getElementById("menu-zodiac");
-    element.addEventListener("scroll",()=>{
-      if(!this.isScroll){
+    element.addEventListener("scroll", () => {
+      if (!this.isScroll) {
         this.scrollEnd(element);
       }
     })
@@ -45,7 +46,7 @@ export class ZodiacDetailPage {
     this.timeOut = setTimeout(() => {
       let distance = Math.round(ele.scrollLeft / (screen.width / 3));
       if (distance > 0) {
-        this.selectedMenu(distance,false);
+        this.selectedMenu(distance, false);
       }
     }, 100);
   }
@@ -75,36 +76,36 @@ export class ZodiacDetailPage {
       return this.data.commom;
     }
   }
-  selectedMenu(index: number,isScroll : boolean) {
+  selectedMenu(index: number, isScroll: boolean) {
     this.selectedIndex = index;
     this.isScroll = isScroll;
     AppModule.getInstance().getScrollController().doScrollTop("contentZodiac");
     let menuElement = document.getElementById("menu-zodiac");
     let element = document.getElementById("animateBar");
-    let distanceTranform = index * screen.width/3;
+    let distanceTranform = index * screen.width / 3;
     let distanceScroll: number = 0;
-    distanceScroll = (index - 1) * screen.width/3;
+    distanceScroll = (index - 1) * screen.width / 3;
     element.style.transform = "translate(" + distanceTranform + "px" + ",0)";
     if (index > 0 && index < 5 && isScroll) {
-      AppModule.getInstance().getScrollController().doScrollLeft("menu-zodiac", distanceScroll,{
+      AppModule.getInstance().getScrollController().doScrollLeft("menu-zodiac", distanceScroll, {
         alpha: 0.2,
-        epsilon:1,
-        callback:()=>{
-          setTimeout(()=> {
+        epsilon: 1,
+        callback: () => {
+          setTimeout(() => {
             this.isScroll = false;
           }, 100);
         }
       });
     };
   }
-  swipe($event){
+  swipe($event) {
     let direction = $event.direction;
-    if(direction==2 && this.selectedIndex<5){
-      this.selectedMenu(this.selectedIndex + 1,true);
+    if (direction == 2 && this.selectedIndex < 5) {
+      this.selectedMenu(this.selectedIndex + 1, true);
     }
-    if(direction==4 && this.selectedIndex>0){
-      this.selectedMenu(this.selectedIndex-1,true);
+    if (direction == 4 && this.selectedIndex > 0) {
+      this.selectedMenu(this.selectedIndex - 1, true);
     }
-    
+
   }
 }

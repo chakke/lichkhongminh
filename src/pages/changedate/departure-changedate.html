@@ -1,20 +1,22 @@
 <ion-header class="a-header-background">
   <div class="padding-statusbar"></div>
   <div class="a3-container a3-items-center a1-relative">
-    <div class="header-button">
+    <div class="header-button  touch-scale">
       <ion-icon name="departure-c-calendar"></ion-icon>
     </div>
-
-    <div class="a-header-title a3-flex-1">
+    <div class="header-title a3-flex-1">
+      Đổi ngày
+    </div>
+    <!-- <div class="a-header-title a3-flex-1">
       <div text-center style="font-size: 1.2em;padding-bottom:5px;font-weight:bold">Đổi ngày</div>
       <div text-center tappable (click)="onClickToday()" style="padding-bottom:8px">
         <span class="today">Hôm nay</span>
         <span class="date-today" nowrap>{{mTodayString}}</span>
       </div>
 
-    </div>
-    <div class="header-button">
-      <ion-icon name="departure-c-notification"></ion-icon>
+    </div> -->
+    <div class="header-button touch-scale" tappable (click)="onClickToday()">
+      <ion-icon name="departure-c-today"></ion-icon>
     </div>
   </div>
 

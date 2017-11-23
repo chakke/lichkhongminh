@@ -1,7 +1,7 @@
 <ion-header>
   <div class="padding-statusbar"></div>
   <div class="a3-container a3-items-center a1-relative">
-    <div class="header-button" tappable (click)="pickSolarDate()">
+    <div class="header-button touch-scale" tappable (click)="pickSolarDate()">
       <ion-icon name="departure-c-calendar"></ion-icon>
     </div>
 
@@ -12,8 +12,8 @@
       <ion-icon margin-left name="ios-arrow-forward" tappable (click)="onClickNextDay()"></ion-icon>
 
     </div>
-    <div class="header-button" tappable>
-      <ion-icon name="departure-c-notification"></ion-icon>
+    <div class="header-button touch-scale" (click)="onClickToDay()" tappable>
+      <ion-icon name="departure-c-today"></ion-icon>
     </div>
   </div>
 </ion-header>
