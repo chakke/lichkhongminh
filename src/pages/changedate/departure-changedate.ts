@@ -8,6 +8,7 @@ import { ScrollItems, ScrollOption } from "../../providers/common/scroll-control
 import { StatusBar } from '@ionic-native/status-bar';
 import { AppLoop } from "../../providers/app-loop";
 import { Utils } from "../../providers/app-utils";
+import { ModalController } from 'ionic-angular/components/modal/modal-controller';
 
 
 @IonicPage()
@@ -18,7 +19,8 @@ import { Utils } from "../../providers/app-utils";
 
 export class DepartureChangeDatePage {
 
-
+  rowHeight: string = "45px";
+  rowContainer: string = "135px";
   mDayDatas: Array<number> = [];
   mMonthDatas: Array<number> = [];
   mYearDatas: Array<number> = [];
@@ -32,6 +34,7 @@ export class DepartureChangeDatePage {
   divID = ["solarDay", "solarMonth", "solarYear", "lunarDay", "lunarMonth", "lunarYear"]
 
   constructor(
+    private mModalController : ModalController,
     private mNavController: NavController,
     private mAppModule: DepartureModule,
     private mStatusBar: StatusBar
@@ -48,7 +51,8 @@ export class DepartureChangeDatePage {
     this.mTodayString = Utils.getViewDate(this.mToday);
     this.mDepartureObject = new DepartureObject(this.mToday);
     this.mAppModule.updateDepartureInfo([this.mDepartureObject]);
-
+    this.rowHeight = Math.floor(screen.height * 0.06) + "px";
+    this.rowContainer = Math.floor(screen.height * 0.06)*3 + "px";
   }
 
 
@@ -114,6 +118,22 @@ export class DepartureChangeDatePage {
       mm: this.mMonthDatas[this.mCenterIndexs[1]],
       yy: this.mYearDatas[this.mCenterIndexs[2]]
     })
+  }
+
+  onClickPickDate(){
+    let modal = this.mModalController.create("PickdatePage");
+    modal.onDidDismiss((data: DepartureObject) => {
+      if (data && data.date) {
+        setTimeout(() => {
+          this.mDepartureObject.setDate(data.date.getDate(), data.date.getMonth(), data.date.getFullYear());
+          this.mAppModule.updateDepartureInfo([this.mDepartureObject]);
+          this.setSolarDay(data.date.getDate(), data.date.getMonth() + 1, data.date.getFullYear());
+        }, 100);
+      }
+    })
+    modal.present({
+      animate: false
+    });
   }
 
   onClickToday() {

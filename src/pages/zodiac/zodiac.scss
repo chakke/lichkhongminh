@@ -1,5 +1,5 @@
 page-zodiac {
-    $background: linear-gradient(to bottom, #14e09c, #274c7c);
+    $background: linear-gradient(to right, #007991, #78ffd6);
     ion-content {
         background: $background;
     }
@@ -9,11 +9,9 @@ page-zodiac {
     .background-header {
         background: rgba(black, 0.4);
     }
-    
     .col {
         margin-bottom: 10px;
     }
-   
     .zodiac-container {
         width: 94%;
         margin: auto;
@@ -31,11 +29,12 @@ page-zodiac {
             span {
                 font-weight: bolder;
                 white-space: nowrap;
+                font-size: $font-titleContent;
             }
         }
         .zodiac-date {
             span {
-                font-size: smaller;
+                font-size: $font-content;
                 white-space: nowrap;
             }
         }

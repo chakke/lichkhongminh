@@ -12,7 +12,6 @@ page-special-date {
     .content-ios {
         background: $background;
     }
-   
     .segment-md .segment-button {
         border: none;
     }
@@ -26,7 +25,9 @@ page-special-date {
         transform: translate(0, 0);
         transition: 200ms;
     }
-   
+    .segmen-title {
+        font-size: $font-option;
+    }
     button.activated,
     .segment-md .segment-button.segment-activated {
         border: none;
@@ -50,11 +51,11 @@ page-special-date {
         width: 20%;
         .dl {
             font-weight: bold;
-            font-size: 1.5em;
+            font-size: $font-timeNumber;
             color: white;
         }
         .al {
-            font-size: 1.2em;
+            font-size: $font-timeSexy;
             color: #dcdcdc;
         }
     }
@@ -91,7 +92,7 @@ page-special-date {
             padding: 6px;
             ion-icon {
                 color: white;
-                font-size: 1.8em;
+                font-size: $font-icon;
             }
         }
         .item-content {
@@ -99,6 +100,7 @@ page-special-date {
             span {
                 color: white;
                 padding-left: 16px;
+                font-size: $font-option;
             }
         }
     }

@@ -1,9 +1,8 @@
 page-number-rich-detail {
-    $background: linear-gradient(to bottom, #14e09c, #274c7c);
+    $background: linear-gradient(to right, #007991, #78ffd6);
     ion-content {
         background: $background;
     }
-   
     // .page-container {
     .number-container {
         margin: auto;
@@ -19,13 +18,15 @@ page-number-rich-detail {
         padding: 10px 0 10px 0;
         span {
             font-weight: bold;
-            font-size: larger;
+            font-size: $font-titleContent;
+            text-transform: capitalize;
         }
     }
     .number-content {
         p {
             color: white;
             text-align: justify;
+            font-size: $font-content;
         }
     }
     // }

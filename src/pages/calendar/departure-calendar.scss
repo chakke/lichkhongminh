@@ -79,6 +79,10 @@ page-departure-calendar {
         -ms-flex-align: center;
         align-items: center;
     }
+    .font-zodiac {
+        white-space: nowrap;
+        font-size: $font-timeTitle;
+    }
     .calendar-th {
         height: $line-height * 1.5;
         padding-left: 16px;
@@ -90,13 +94,15 @@ page-departure-calendar {
             line-height: $line-height * 1.5;
             color: white;
             overflow: visible;
+            span {
+                font-size: $font-timeTitle;
+            }
         }
     }
     .calendar-day {
         -ms-flex-wrap: wrap;
         flex-wrap: wrap;
         .col {
-            line-height: 1.2em;
             width: 14.2857142857%;
             -ms-flex-preferred-size: initial;
             flex-basis: initial;
@@ -105,15 +111,13 @@ page-departure-calendar {
         }
         .selected {
             // border-color: #4db8ff !important;
-           // font-weight: bold;
+            // font-weight: bold;
             // background-color: rgba(0, 0, 0, 0.8);
             // color: white !important;
             // .solar-date{
             //     color: white;
             // }
-
             border: solid 1px #4bcdef;
-
         }
         .today {
             border-color: #fad1e1 !important;
@@ -122,10 +126,10 @@ page-departure-calendar {
         .solar-date {
             width: 100%;
             display: block;
-            font-size: 4.5vw;
+            font-size: $font-timeNumber;
         }
         .lunar-date {
-            font-size: 0.8em;
+            font-size: $font-timeSexy;
             display: inline-block;
             color: #b7b7b7;
             background-color: transparent;
@@ -140,7 +144,6 @@ page-departure-calendar {
             //border-radius: 50%;
             //border-width: 1px;
             //border-color: white;
-          
             padding: 2px;
             padding-top: 3px;
         }
@@ -155,17 +158,17 @@ page-departure-calendar {
         color: #717171;
     }
     .status-day {
-        width: 5px;
-        height: 5px;
+        width: $dot-size;
+        height: $dot-size;
         border-radius: 50%;
         background-color: transparent;
-        margin-right: 5px;
         margin-top: 2px;
+        margin-right: 2px;
     }
     .status-zodiac {
         display: inline-block;
-        width: 7px;
-        height: 7px;
+        width: $dot-size;
+        height: $dot-size;
         border-radius: 50%;
         background-color: transparent;
         vertical-align: middle;
@@ -183,12 +186,6 @@ page-departure-calendar {
         border-bottom-right-radius: 10px;
     }
     .zodiac-block {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        justify-content: center;
         border-top: 1px solid #ccc;
         border-bottom: 1px solid #ccc;
         background-color: white;
@@ -196,8 +193,7 @@ page-departure-calendar {
             margin: 5px 10px;
         }
         div {
-            height: 20px;
-            margin: 10px;
+            margin: 6px;
             display: -webkit-box;
             display: -ms-flexbox;
             display: flex;
@@ -210,9 +206,10 @@ page-departure-calendar {
             display: block;
             margin-bottom: 5px;
             color: #4db8ff;
+            font-size: $font-dayName;
         }
         .day-comment {
-            font-size: .9em;
+            font-size: $font-dayContent;
         }
     }
 }

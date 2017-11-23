@@ -156,6 +156,10 @@ export class DayDetailPage {
     this.getDayDetail2();
   }
   prev() {
+    let elements = document.getElementsByClassName("app-content");
+    if(elements && elements[1] && elements[1].scrollTop!=0){
+      elements[1].scrollTop = 0;
+    }
     if(this.slides.getActiveIndex()==0){
       let date = new Date();
       this.backtoPreviousDate();
@@ -169,6 +173,10 @@ export class DayDetailPage {
 
   }
   next() {
+    let elements = document.getElementsByClassName("app-content");
+    if(elements && elements[1] && elements[1].scrollTop!=0){
+      elements[1].scrollTop = 0;
+    }
     if(this.slides.getActiveIndex()==2){
       let date = new Date();
       this.forwardNextDate();

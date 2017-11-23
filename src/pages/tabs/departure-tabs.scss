@@ -1,24 +1,28 @@
 page-departure-tabs {
-  
-  .divBar {
-    width: 40px;
-    height: 6px;
-    background-color: #4bcdef;
-    border-radius: 6px;
-    position: absolute;
-    left: 20px;
-    transform: translate(0px, -4px);
-    transition: 200ms;
-  }
-  .tab-button-icon {
-    font-size: 24px !important;
-  }
-  .tab-button[aria-selected=true] .tab-button-icon {
-    color: #4bcdef !important;
-  }
-  .tabs-ios .tabbar {
-    border-top: none !important;
-  }
-
-  
+    .divBar {
+        width: 40px;
+        height: 6px;
+        background-color: #4bcdef;
+        border-radius: 6px;
+        position: absolute;
+        left: 20px;
+        transform: translate(0px, -4px);
+        transition: 200ms;
+    }
+    .tabs-ios .tab-button-icon {
+        height: unset;
+    }
+    .tab-button-icon {
+        font-size: $font-iconTabbar !important;
+    }
+    .tab-button[aria-selected=true] .tab-button-icon {
+        color: #4bcdef !important;
+    }
+    .tabs-ios[tabsLayout=title-hide] .tab-button,
+    .tabs-ios .tab-button.icon-only {
+        min-height: $ios-footer-height;
+    }
+    .tabs-ios .tabbar {
+        border-top: none !important;
+    }
 }

@@ -1,9 +1,8 @@
 page-number-rich {
-    $background: linear-gradient(to bottom, #14e09c, #274c7c);
+    $background: linear-gradient(to right, #007991, #78ffd6);
     ion-content {
         background: $background;
     }
-  
     .pageNumber-container {
         margin: auto;
         width: 50%;
@@ -17,6 +16,7 @@ page-number-rich {
         display: inline-block;
         span {
             color: white;
+            font-size: $font-button;
         }
     }
     .text-input-md {
@@ -26,6 +26,9 @@ page-number-rich {
         margin-top: 13px;
         margin-bottom: 5px;
         // padding-bottom: 3px;
+    }
+    .text-input {
+        font-size: $font-content !important;
     }
     ion-input {
         border-bottom: 1px solid white;

@@ -1,6 +1,6 @@
 page-select-date {
-    $background: linear-gradient(to bottom, #14e09c, #274c7c);
-    $item-height: 30px;
+    $background: linear-gradient(to right, #007991, #78ffd6);
+    $item-height: 40px;
     ion-content {
         background: $background;
     }
@@ -10,7 +10,6 @@ page-select-date {
     .background-header {
         background: rgba(black, 0.4);
     }
-  
     .selectDate-page {
         .selectDate-container {
             margin: auto;
@@ -21,8 +20,8 @@ page-select-date {
                 span {
                     text-align: center;
                     font-weight: bold;
-                    font-size: larger;
                     white-space: nowrap;
+                    font-size: $font-titleContent;
                 }
             }
             .scroll-title {
@@ -30,7 +29,8 @@ page-select-date {
                 height: 30px;
                 text-align: center;
                 white-space: nowrap;
-                background: linear-gradient(to right, #14e09c, #274c7c)
+                font-size: $font-titleContent;
+                background: rgba(black, 0.2);
             }
             .a-50 {
                 width: 50%;
@@ -59,6 +59,7 @@ page-select-date {
                         line-height: $item-height;
                         display: block;
                         white-space: nowrap;
+                        font-size: $font-content;
                     }
                 }
             }
@@ -74,6 +75,7 @@ page-select-date {
         margin-top: 16px;
         span {
             color: white;
+            font-size: $font-button;
         }
     }
 }

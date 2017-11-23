@@ -17,7 +17,7 @@ import { StatusBar } from '@ionic-native/status-bar';
   templateUrl: 'select-date.html',
 })
 export class SelectDatePage {
-  rowHeight = 30;
+  rowHeight = 40;
   data: any;
   isLoading : boolean = true;
   dayInMonth = [];

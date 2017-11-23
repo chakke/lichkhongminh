@@ -18,7 +18,7 @@ export interface Letter {
 export class GiaiMongPage {
   @ViewChild('mongName') mongName: ElementRef;
   @ViewChild('mongContent') mongContent: ElementRef;
-  row_height = 30;
+  row_height = 40;
   data: any;
   selectedIndex = 0;
   letters = new Array<Letter>();

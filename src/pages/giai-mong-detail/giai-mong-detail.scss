@@ -1,5 +1,5 @@
 page-giai-mong-detail {
-    $background: linear-gradient(to bottom, #14e09c, #274c7c);
+    $background: linear-gradient(to right, #007991, #78ffd6);
     ion-content {
         background: $background;
     }
@@ -53,12 +53,14 @@ page-giai-mong-detail {
                 color: white;
                 text-transform: uppercase;
                 font-weight: bold;
+                font-size: $font-titleContent;
             }
         }
         p {
             color: white;
             white-space: pre-wrap;
             line-height: 1.5em;
+            font-size: $font-content;
         }
     }
 }

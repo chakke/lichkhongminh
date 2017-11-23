@@ -1,5 +1,5 @@
 page-select-date-detail {
-    $background: linear-gradient(to bottom, #14e09c, #274c7c);
+    $background: linear-gradient(to right, #007991, #78ffd6);
     ion-content {
         background: $background;
     }
@@ -9,7 +9,6 @@ page-select-date-detail {
     .background-header {
         background: rgba(black, 0.4);
     }
-   
     .selectDate-detail {
         height: calc(100% - 32px);
         padding-top: 16px;
@@ -28,6 +27,7 @@ page-select-date-detail {
                 span {
                     white-space: nowrap;
                     font-weight: bold;
+                    font-size: $font-titleContent;
                 }
             }
             .content-work {
@@ -35,16 +35,19 @@ page-select-date-detail {
                     padding: 16px 0 5px 0;
                     span {
                         font-weight: bold;
+                        font-size: $font-titleContent;
                     }
                 }
                 .p-left-5 {
                     padding-left: 5px;
+                    font-size: $font-content;
                 }
                 p {
                     white-space: pre-wrap;
                     text-align: justify;
                     line-height: 1.5em;
                     color: white;
+                    font-size: $font-content;
                 }
             }
         }

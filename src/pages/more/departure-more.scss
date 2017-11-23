@@ -44,13 +44,13 @@ page-departure-more {
         }
         .icon-option {
             color: #4bcdef;
-            ion-icon{
-                font-size: 2em !important;
+            ion-icon {
+                font-size: $font-iconTabbar !important;
             }
         }
         .name-option {
             width: 70%;
-            font-size: 1em;
+            font-size: $font-option;
             padding: 0.5em;
         }
     }
