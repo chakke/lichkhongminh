@@ -2,7 +2,6 @@ page-pickdate {
     $rowHeight: 45px;
     ion-content {
         background-color: rgba(black, 0.6) !important;
-        
     }
     // .content {
     //     background-color: #fff;
@@ -28,6 +27,7 @@ page-pickdate {
     .title {
         padding: 16px;
         color: #fff;
+        font-size: $font-titleContent;
     }
     .close-button {
         height: $rowHeight;
@@ -76,7 +76,7 @@ page-pickdate {
                     text-align: center;
                     height: $rowHeight;
                     line-height: $rowHeight;
-                    font-size: 1em;
+                    font-size: 1.2em;
                 }
             }
         }
@@ -94,6 +94,7 @@ page-pickdate {
         border-radius: 5px;
         height: $rowHeight;
         position: relative;
+        font-size: $font-button;
         margin: auto;
         width: 80%;
         padding: 16px;

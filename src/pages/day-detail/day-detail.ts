@@ -154,6 +154,10 @@ export class DayDetailPage {
     this.loadData();
     this.getDayDetail1();
     this.getDayDetail2();
+    let elements = document.getElementsByClassName("app-content");
+    if(elements && elements[1] && elements[1].scrollTop!=0){
+      elements[1].scrollTop = 0;
+    } 
   }
   prev() {
     let elements = document.getElementsByClassName("app-content");

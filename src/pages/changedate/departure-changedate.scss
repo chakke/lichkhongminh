@@ -138,6 +138,8 @@ page-departure-changedate {
     .zodiac-block {
         margin-top: 20px;
         width: 100%;
+        filter: brightness(100%);
+        transition: 200ms;
         .date-detail {
             width: 90%;
             border-radius: 20px;
@@ -147,6 +149,9 @@ page-departure-changedate {
             font-size: $font-button;
             padding: 6px 0px;
         }
+    }
+    .zodiac-block:active {
+        filter: brightness(120%);
     }
     .zodiac-comment {
         padding: 5%;

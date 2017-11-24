@@ -23,7 +23,7 @@ page-giai-mong {
         width: 40%;
         background: rgba(black, 0.1);
         border-radius: 20px;
-        top: $item-scroll-height * 3;
+        top: $item-scroll-height * 2;
         height: $item-scroll-height;
     }
     .bottom {
@@ -86,7 +86,7 @@ page-giai-mong {
         }
     }
     .scroll-container {
-        height: $item-scroll-height *7;
+        height: $item-scroll-height *5;
         overflow: auto;
         width: 50%;
         .item-scroll {

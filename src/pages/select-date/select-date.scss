@@ -30,25 +30,36 @@ page-select-date {
                 text-align: center;
                 white-space: nowrap;
                 font-size: $font-titleContent;
-                background: rgba(black, 0.2);
+                background: rgba(black, 0.6);
             }
             .a-50 {
                 width: 50%;
+                span {
+                    font-size: $font-titleContent;
+                }
             }
             .a-25 {
                 width: 25%;
+                span {
+                    font-size: $font-titleContent;
+                }
             }
             .bg {
                 height: $item-height;
                 width: 100%;
-                background: rgba(black, 0.2);
+                background: rgba(whitesmoke, 0.2);
                 position: absolute;
                 top: $item-height * 2;
                 z-index: -1;
             }
+            .background-scroll {
+                background: rgba(black, 0.2);
+                border-radius: 5px;
+            }
             .scroll-container {
                 height: $item-height * 5;
-                overflow: auto;
+                overflow-y: auto;
+                overflow-x: hidden;
                 .item-scroll {
                     height: $item-height;
                     width: 100%;
@@ -60,6 +71,7 @@ page-select-date {
                         display: block;
                         white-space: nowrap;
                         font-size: $font-content;
+                        padding-left: 2px;
                     }
                 }
             }
@@ -73,9 +85,16 @@ page-select-date {
         width: 40%;
         margin: auto;
         margin-top: 16px;
+        transform: scale(1);
+        filter: grayscale(0%);
+        transition: 200ms;
         span {
             color: white;
             font-size: $font-button;
         }
+    }
+    .view-button:active {
+        transform: scale(.96);
+        filter: grayscale(10%);
     }
 }

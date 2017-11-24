@@ -124,7 +124,7 @@ export class GiaiMongPage {
       alpha: 0.1,
       epsilon:1,
       callback: () => {
-        if (nowScrollTop % 30 == 0 && this.currentID == i) {
+        if (nowScrollTop % 40 == 0 && this.currentID == i) {
           this.getElement(i);
         }
       }
@@ -132,9 +132,11 @@ export class GiaiMongPage {
   }
   getElement(i: number) {
     let scrollElm = document.getElementById(this.divID[i]);
-    let childIndex = Math.round(scrollElm.scrollTop / this.row_height);
+    let childIndex = Math.round(scrollElm.scrollTop / this.row_height); 
+    
     if (i == 0) {
       let letter = this.letters[childIndex].letter;
+      
       let element = document.getElementById("scroll2");
       if (element) {
         let elementIndex = Math.round(element.scrollTop / this.row_height);
