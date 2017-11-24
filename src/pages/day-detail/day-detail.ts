@@ -159,7 +159,7 @@ export class DayDetailPage {
     let elements = document.getElementsByClassName("app-content");
     if(elements && elements[1] && elements[1].scrollTop!=0){
       elements[1].scrollTop = 0;
-    }
+    } 
     if(this.slides.getActiveIndex()==0){
       let date = new Date();
       this.backtoPreviousDate();
