@@ -17,6 +17,10 @@
     padding: 0px !important;
 }
 
+.header-md::after {
+    height: 0!important;
+}
+
 .footer-md::before,
 .tabs-md[tabsPlacement="bottom"]>.tabbar::before {
     top: 0px;
