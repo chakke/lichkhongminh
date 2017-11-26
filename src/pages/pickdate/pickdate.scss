@@ -1,5 +1,6 @@
 page-pickdate {
     $rowHeight: 45px;
+    $ipadRowHeight: 80px;
     ion-content {
         background-color: rgba(black, 0.6) !important;
     }
@@ -18,7 +19,6 @@ page-pickdate {
         padding: 0px !important;
     }
     .change-date-header {
-        height: $rowHeight;
         background: linear-gradient(to right, #18cae6, #32a4cc);
         position: relative;
         border-top-left-radius: 10px;
@@ -30,17 +30,30 @@ page-pickdate {
         font-size: $font-titleContent;
     }
     .close-button {
-        height: $rowHeight;
-        width: $rowHeight;
         padding: 10px;
         color: #fff;
+        width: 15%;
         background: rgba(white, 0.3);
         position: absolute;
         right: 0;
+        top: 0;
+        height: 100%;
         border-top-right-radius: 10px;
+        ion-icon {
+            font-size: $font-icon;
+        }
     }
     .close-button:active {
         background-color: rgba(black, 0.6);
+    }
+    .ipad-container {
+        height: $ipadRowHeight * 3 !important;
+    }
+    .ipad-row-height {
+        height: $ipadRowHeight !important;
+    }
+    .ipad-line-height {
+        line-height: $ipadRowHeight !important;
     }
     .change-date-col-container {
         height: $rowHeight *3;
@@ -76,13 +89,12 @@ page-pickdate {
                     text-align: center;
                     height: $rowHeight;
                     line-height: $rowHeight;
-                    font-size: 1.2em;
+                    font-size: $font-content;
                 }
             }
         }
     }
     .change-date-content {
-        height: $rowHeight *4;
         position: relative;
         margin: auto;
         width: 80%;
@@ -92,7 +104,6 @@ page-pickdate {
     .button-bottom {
         margin-top: 16px;
         border-radius: 5px;
-        height: $rowHeight;
         position: relative;
         font-size: $font-button;
         margin: auto;

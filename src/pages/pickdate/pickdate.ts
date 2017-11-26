@@ -23,6 +23,8 @@ export class PickdatePage {
   day_29 = [];
   day_28 = [];
   rowHeight = 45;//height of each row in px; Match to css; 
+  ipadrowHeight = 80;//height of each row in px; Match to css; 
+  isIpadDevices : boolean = false;
   timeoutID = [];
   touchingObjects = [];
   animationFrameObjects = [];
@@ -58,6 +60,10 @@ export class PickdatePage {
     }
     for (let i = 1900; i <= 2200; i++) {
       this.datas[2].push(i);
+    }
+    if(screen.width > 700){
+      this.rowHeight = this.ipadrowHeight;
+      this.isIpadDevices = true;
     }
   }
   ionViewDidLoad() {

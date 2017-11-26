@@ -37,6 +37,9 @@ page-van-khan {
             .item-end {
                 width: 10%;
                 text-align: center;
+                ion-icon {
+                    font-size: $font-icon;
+                }
             }
         }
     }

@@ -1,13 +1,16 @@
 page-departure-tabs {
     .divBar {
-        width: 40px;
+        width: 10vw;
         height: 6px;
         background-color: #4bcdef;
         border-radius: 6px;
         position: absolute;
-        left: 20px;
+        left: 5vw;
         transform: translate(0px, -4px);
         transition: 200ms;
+    }
+    .tabs-ios .tab-button {
+        max-width: unset;
     }
     .tabs-ios .tab-button-icon {
         height: unset;

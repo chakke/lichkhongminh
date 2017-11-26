@@ -42,14 +42,14 @@ export class VanKhanCtPage {
   changeTextSmaller(){
     let p = document.getElementById("text-vk");
     let t = document.getElementById("title-vk");
-    t.style.fontSize = "1.2em";
-    p.style.fontSize = "1em";
+    t.style.fontSize = "4.5vw";
+    p.style.fontSize = "4vw";
   }
   changeTextLarger(){
     let p = document.getElementById("text-vk");
     let t = document.getElementById("title-vk");
-    t.style.fontSize = "1.8em";
-    p.style.fontSize = "1.4em";
+    t.style.fontSize = "5vw";
+    p.style.fontSize = "4.5vw";
   }
 
 }

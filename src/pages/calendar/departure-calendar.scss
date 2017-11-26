@@ -2,6 +2,14 @@ page-departure-calendar {
     ion-content {
         background-color: white;
     }
+    .ipad-dot {
+        height: $ipad-dot-size !important;
+        width: $ipad-dot-size !important;
+        border-radius: 50%;
+        background-color: transparent;
+        margin-top: 2px;
+        margin-right: 2px;
+    }
     .a-header-background {
         background: linear-gradient(to right, #17cce9, #34a1ca);
         background-size: cover;
@@ -84,14 +92,12 @@ page-departure-calendar {
         font-size: $font-timeTitle;
     }
     .calendar-th {
-        height: $line-height * 1.5;
         padding-left: 16px;
         padding-right: 16px;
         .col {
             font-weight: bold;
             border: none;
             margin-left: 0;
-            line-height: $line-height * 1.5;
             color: white;
             overflow: visible;
             span {

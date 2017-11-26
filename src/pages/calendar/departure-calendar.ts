@@ -35,6 +35,8 @@ export class DepartureCalendarPage {
   isPlatform;
   isLoading: boolean = true;
   isTouching: boolean = false;
+  isIpadDevices: boolean = false;
+  dotSize: string = "6px";
   constructor(
     private navParams: NavParams,
     private navCtrl: NavController,
@@ -45,6 +47,14 @@ export class DepartureCalendarPage {
     private statusBar: StatusBar,
   ) {
     this.isPlatform = this.platform._platforms[2];
+    if(screen.width> 700){
+      this.isIpadDevices =true;
+      console.log("ipad");
+      this.dotSize = "10px";
+      
+    }else{
+      this.dotSize = this.dotSize;
+    }
     this.currentDate = new DepartureObject(new Date());
     this.selectedDate = new DepartureObject(new Date());
     this.calendar = new Calendar(this.currentDate.date.getMonth(), this.currentDate.date.getFullYear());

@@ -18,36 +18,36 @@
 
 
 <ion-header>
-  <div class="padding-statusbar"></div>
-  <div class="a3-container a3-items-center a1-relative">
-    <div class="header-button" tappable (click)="closeView()">
-      <ion-icon name="ios-arrow-dropleft-outline"></ion-icon>
-    </div>
+    <div class="padding-statusbar"></div>
+    <div class="a3-container a3-items-center a1-relative">
+        <div class="header-button" tappable (click)="closeView()">
+            <ion-icon name="ios-arrow-dropleft-outline"></ion-icon>
+        </div>
 
-    <div class="header-title a3-flex-1">
-      Văn Khấn
-    </div>
+        <div class="header-title a3-flex-1">
+            Văn Khấn
+        </div>
 
 
-    <div class="header-button" tappable (click)="changeTextSmaller()" style="padding-right:8px !important; font-size:1.4em">
-      A -
+        <div class="header-button" tappable (click)="changeTextSmaller()" class="setting-text" margin-right>
+            A -
+        </div>
+        <div class="header-button" tappable (click)="changeTextLarger()" class="setting-text">
+            A +
+        </div>
     </div>
-    <div class="header-button" tappable (click)="changeTextLarger()" style=" font-size:1.4em">
-      A +
-    </div>
-  </div>
 </ion-header>
 
 
 
 
 <ion-content>
-  <div class="appContentVK a1-relative" margin-top>
-    <div class="content-title" id="title-vk">
-      <span>{{van_khan_td}}</span>
+    <div class="appContentVK a1-relative" margin-top>
+        <div class="content-title" id="title-vk">
+            <span>{{van_khan_td}}</span>
+        </div>
+        <div class="content-text">
+            <p id="text-vk">{{van_khan}}</p>
+        </div>
     </div>
-    <div class="content-text">
-      <p id="text-vk">{{van_khan}}</p>
-    </div>
-  </div>
 </ion-content>
